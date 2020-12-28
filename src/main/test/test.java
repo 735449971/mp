@@ -6,19 +6,7 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.baomidou.mybatisplus.mapper.Condition;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.sql.DataSource;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author: zhu
@@ -32,9 +20,9 @@ public class test {
         //1、全局配置
         GlobalConfig config = new GlobalConfig();
         config.setActiveRecord(true)//开启AR模式
-              .setAuthor("zhu")//设置作者
+              .setAuthor("wxl")//设置作者
               //生成路径(一般都是生成在此项目的src/main/java下面)
-              .setOutputDir("E:\\develop\\Java\\workspace\\ideaworkspace\\mpg\\src\\main\\java")
+              .setOutputDir("D:\\work\\mp\\mpg\\src\\main\\java")
               .setFileOverride(true)//第二次生成会把第一次生成的覆盖掉
               .setIdType(IdType.AUTO)//主键策略
               .setServiceName("%sService")//生成的service接口名字首字母是否为I，这样设置就没有I
@@ -42,19 +30,20 @@ public class test {
               .setBaseColumnList(true);//在xml中生成基础列
         //2、数据源配置
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setDbType(DbType.MYSQL)//数据库类型
-                        .setDriverName("com.mysql.jdbc.Driver")
-                        .setUrl("jdbc:mysql:///数据库名")
-                        .setUsername("数据库用户名")
-                        .setPassword("数据库密码");
+        dataSourceConfig.setDbType(DbType.ORACLE)//数据库类型
+                        .setDriverName("oracle.jdbc.OracleDriver")
+                        .setUrl("jdbc:oracle:thin:@192.168.15.122:1521:XE")
+                        .setUsername("system")
+                        .setPassword("system");
         //3、策略配置
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig.setCapitalMode(true)//开启全局大写命名
                       .setDbColumnUnderline(true)//表名字段名使用下划线
                       .setNaming(NamingStrategy.underline_to_camel)//下划线到驼峰的命名方式
-                      .setTablePrefix("tb_")//表名前缀
+//                      .setTablePrefix("t_")//表名前缀
                       .setEntityLombokModel(true)//使用lombok
-                      .setInclude("表1","表二");//逆向工程使用的表
+                      .setInclude("app_user_account");//逆向工程使用的表
+//                      .setInclude("表1","表二");//逆向工程使用的表
         //4、包名策略配置
         PackageConfig packageConfig = new PackageConfig();
         packageConfig.setParent("com.zhu.mpg")//设置包名的parent
